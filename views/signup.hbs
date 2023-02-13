@@ -1,0 +1,18 @@
+<form action="/" method="post">
+    <label for="">Email</label>
+    <input type="text" name="email">
+    <label for="">Username</label>
+    <input type="text" name="username">
+    <label for="">Password</label>
+    <input type="password" name="password">
+    <button type="submit">Sign Up</button>
+</form>
+<br>
+{{#if errorMessage}}
+    <h3>{{errorMessage}}</h3>
+    {{!-- style the borders for email, user, and signup red --}}
+{{/if}}
+<br>
+<form action="/login" method="get">
+    <p>Already a user? <button type="submit">Login</button></p>
+</form>
