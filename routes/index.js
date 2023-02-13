@@ -65,7 +65,7 @@ router.post('/login', (req, res, next) => {
   User.findOne({ username })
     .then(user => {
       if (!user) {
-        res.render('login.hbs', { errorMessage: 'username is not registered. Try with other username.' });
+        res.render('login.hbs', { errorMessage: 'username or password are incorrect' });
         return;
       } else if (bcryptjs.compareSync(password, user.password)) {
         req.session.user = user
@@ -77,17 +77,19 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
+router.get('/home', loggedIn, (req, res, next)=>{
+  res.render('index.hbs');
+})
+
+router.get('/pokemon', loggedIn, (req, res, next)=>{
+  res.render('pokemon.hbs');
+})
+
 router.get('/logout', (req, res, next) => {
   req.session.destroy(err => {
     if (err) next(err);
     res.redirect('/');
   });
 });
-
-router.get('/home', loggedIn, (req, res, next)=>{
-  res.render('index.hbs');
-})
-
-
 
 module.exports = router;
