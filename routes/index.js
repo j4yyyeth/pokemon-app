@@ -69,6 +69,7 @@ router.post('/login', (req, res, next) => {
         return;
       } else if (bcryptjs.compareSync(password, user.password)) {
         req.session.user = user
+        // user.username
         res.redirect('/home');
       } else {
         res.render('login.hbs', { errorMessage: 'Incorrect password.' });

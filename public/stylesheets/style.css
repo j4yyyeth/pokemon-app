@@ -29,3 +29,7 @@ img {
 .pokemon-img {
   height: 17vh;
 }
+
+.team-form select{
+  padding: 50px;
+}

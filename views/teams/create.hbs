@@ -1,1 +1,25 @@
-<h1>Create a Team</h1>
+<h1>Create Team</h1>
+
+<form action="/users/create" method="post" class="team-form">
+<label>Pokemon 1:</label>
+    <select name="pokemon" id="pokemon">
+        {{#each pokemon}}
+        <option value={{_id}}>{{name}}</option>
+        {{/each}}
+    </select>
+
+    <label>Pokemon 2:</label>
+    <select name="pokemon" id="pokemon">
+        {{#each pokemon}}
+        <option value={{_id}}>{{name}}</option>
+        {{/each}}
+    </select>
+
+    <label>Pokemon 3:</label>
+    <select name="pokemon" id="pokemon">
+        {{#each pokemon}}
+        <option value={{_id}}>{{name}}</option>
+        {{/each}}
+    </select>
+    <button type="submit">Create</button>
+</form>

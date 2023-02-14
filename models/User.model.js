@@ -12,8 +12,6 @@ const userSchema = new Schema (
                unique: true
               },
     password: String,
-    // favoritePokemon: String,
-    // team: String
     }
 );
 
