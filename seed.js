@@ -5,26 +5,33 @@ const axios = require('axios')
 // const Book = require('./models/Book.model');
 
 const MONGO_URI = process.env.MONGODB_URI;
+const Pokemon = require('./models/Pokemon.model');
 
 let pokeUrls = [
 
 ];
 
 let pokeDetails = []
+let pokeFinal = [];
 
-axios.get('https://pokeapi.co/api/v2/pokemon?limit=386&offset=0')
+
+mongoose
+  .connect(MONGO_URI)
+  .then(x => {
+    console.log(`Connected to the database: "${x.connection.name}"`);
+    // Before adding any recipes to the database, let's remove all existing ones
+    return Pokemon.deleteMany()
+  })
+  .then((mongoResults)=>{
+    console.log(mongoResults)
+    return axios.get('https://pokeapi.co/api/v2/pokemon?limit=386&offset=0')
     .then((results) => {
         const arr = results.data.results
        return pokeUrls = arr.map((element) => {
             return element.url
         })
-        // console.log(pokeUrls)
-        // // console.log(results.data)
-        // results.data.forEach((element) => {
-        //     return element.url
-        // })
-        // console.log(results.data)
     })
+  })
     .then((urls) => {
         return Promise.all(urls.map((element) => {
            return axios.get(element) 
@@ -34,33 +41,27 @@ axios.get('https://pokeapi.co/api/v2/pokemon?limit=386&offset=0')
         return pokeDetails = results.map((element) => {
             return element.data
         })
-        // console.log(pokeDetails)
     })
     .then((details) => {
-        console.log(details)
+        return pokeFinal = details.map((elm)=>{
+            return {name: elm.name, image: elm.sprites.front_default};
+        })
+    })
+    .then((final)=>{
+
+        return Promise.all(final.map((elm)=>{
+            return Pokemon.create({
+                name: elm.name,
+                image: elm.image
+            })
+        }))
+    })
+    .then((DBresults)=>{
+        console.log(DBresults);
+        mongoose.connection.close(() => {
+      console.log('Mongoose connection closed');
+    });
     })
     .catch((err) => {
         console.log(err)
     })
-
-// mongoose
-//   .connect(MONGO_URI)
-//   .then(x => {
-//     console.log(`Connected to Mongo database: "${x.connections[0].name}"`);
-
-//     // Create new documents in the books collection
-//     return Book.create(books);
-//   })
-//   .then(booksFromDB => {
-//     console.log(`Created ${booksFromDB.length} books`);
-
-//     // Once the documents are created, close the DB connection
-//     return mongoose.connection.close();
-//   })
-//   .then(() => {
-//     // Once the DB connection is closed, print a message
-//     console.log('DB connection closed!');
-//   })
-//   .catch(err => {
-//     console.log(`An error occurred while creating books from the DB: ${err}`);
-//   });

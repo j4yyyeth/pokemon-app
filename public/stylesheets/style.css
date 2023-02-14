@@ -21,3 +21,11 @@ nav {
 img {
   height: 5vh;
 }
+
+.box {
+  border: 1px black solid;
+}
+
+.pokemon-img {
+  height: 15vh;
+}

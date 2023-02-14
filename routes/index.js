@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var bcryptjs = require('bcryptjs');
 var saltRounds = 10;
 const User = require('../models/User.model');
+const Pokemon = require('../models/Pokemon.model');
 const {loggedIn, loggedOut} = require('../middleware/guard');
 /* signup page */
 router.get('/', (req, res, next)=>{
@@ -31,8 +32,7 @@ router.post('/', (req, res, next) => {
         password: hashedPassword
       });
     })
-    .then((userFromDB) => {
-      console.log('Newly created user is: ', userFromDB);
+    .then(() => {
       res.redirect('/home')
     })
     .catch(error => {
@@ -48,7 +48,7 @@ router.post('/', (req, res, next) => {
     })
 })
 
-router.get('/login', (req, res, next)=>{
+router.get('/login', (req, res, next) => {
   res.render('login.hbs');
 })
 
@@ -77,12 +77,27 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
-router.get('/home', loggedIn, (req, res, next)=>{
+router.get('/home', loggedIn, (req, res, next) => {
   res.render('index.hbs');
 })
 
-router.get('/pokemon', loggedIn, (req, res, next)=>{
-  res.render('pokemon.hbs');
+router.get('/pokemon', (req, res, next) => {
+
+
+  Pokemon.find()
+    .then(pokemonFromDB => {
+      // -> allTheBooksFromDB is a placeholder, it can be any word
+      console.log('Retrieved pokemon from DB');
+ 
+      // we call the render method after we obtain the books data from the database -> allTheBooksFromDB
+      res.render('pokemon.hbs', { pokemon: pokemonFromDB }); // pass `allTheBooksFromDB` to the view (as a variable books to be used in the HBS)
+    })
+    .catch(error => {
+      console.log('Error while getting the pokemon: ', error);
+      next(error);
+    });
+
+
 })
 
 router.get('/logout', (req, res, next) => {
