@@ -19,7 +19,6 @@ mongoose
   .connect(MONGO_URI)
   .then(x => {
     console.log(`Connected to the database: "${x.connection.name}"`);
-    // Before adding any recipes to the database, let's remove all existing ones
     return Pokemon.deleteMany()
   })
   .then((mongoResults)=>{

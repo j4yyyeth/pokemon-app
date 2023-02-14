@@ -1,17 +1,24 @@
 var express = require('express');
 var router = express.Router();
+const User = require('../models/User.model');
 const {loggedIn, loggedOut} = require('../middleware/guard');
 
-/* GET users listing. */
-router.get('/profile', (req, res, next) => {
-  res.render('profile.hbs');
-});
+router.get('/profile', loggedIn, (req, res, next) => {
+  User.findOne()
+    .then(profile => {
+      res.render('profile.hbs', { user: profile.username });
+    })
+    .catch(error => {
+      console.log('Error while getting the user: ', error);
+      next(error);
+    })
+})
 
-router.get('/teams', (req, res, next) => {
+router.get('/teams', loggedIn, (req, res, next) => {
   res.render('teams/view.hbs');
 });
 
-router.get('/create', (req, res, next) => {
+router.get('/create', loggedIn, (req, res, next) => {
   res.render('teams/create.hbs');
 });
 

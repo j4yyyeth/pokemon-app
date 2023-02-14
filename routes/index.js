@@ -81,7 +81,7 @@ router.get('/home', loggedIn, (req, res, next) => {
   res.render('index.hbs');
 })
 
-router.get('/pokemon', (req, res, next) => {
+router.get('/pokemon', loggedIn, (req, res, next) => {
 
 
   Pokemon.find()
