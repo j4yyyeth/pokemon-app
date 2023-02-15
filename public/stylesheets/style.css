@@ -33,3 +33,41 @@ img {
 .team-form select{
   padding: 50px;
 }
+
+.dropbtn {
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  font-size: 20px;
+}
+.dropdown {
+  overflow-y: scroll;
+  /* position: relative; */
+  display: inline-block;
+}
+.dropText {
+  display: none;
+  position: absolute;
+  background-color: rgb(42, 117, 187);
+  min-width: 120px;
+  z-index: 200;
+}
+.dropText a {
+  color: black;
+  padding: 12px 25px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropText img {
+  width: 1vw;
+}
+
+.dropText a:hover {
+  background-color: rgb(151, 151, 151);
+}
+.dropdown:hover .dropText {
+  display: block;
+}
+.dropdown:hover .dropbtn {
+  background-color: rgb(255, 203, 5);
+}

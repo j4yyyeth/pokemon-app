@@ -3,6 +3,7 @@
 <form action="/users/create" method="post" class="team-form">
 <label>Pokemon 1:</label>
     <select name="pokemon" id="pokemon">
+        <option value="" disabled selected>Select Pokémon</option>
         {{#each pokemon}}
         <option value={{_id}}>{{name}}</option>
         {{/each}}
@@ -10,6 +11,7 @@
 
     <label>Pokemon 2:</label>
     <select name="pokemon" id="pokemon">
+        <option value="" disabled selected>Select Pokémon</option>
         {{#each pokemon}}
         <option value={{_id}}>{{name}}</option>
         {{/each}}
@@ -17,9 +19,42 @@
 
     <label>Pokemon 3:</label>
     <select name="pokemon" id="pokemon">
+        <option value="" disabled selected>Select Pokémon</option>
         {{#each pokemon}}
         <option value={{_id}}>{{name}}</option>
         {{/each}}
     </select>
     <button type="submit">Create</button>
 </form>
+
+     {{!-- <div class="dropdown">
+      <button class="dropbtn">
+         Select Pokémon
+      </button>
+      <div class="dropText">
+        {{#each pokemon}}
+            <a href="#"><img src="{{image}}" width="80" height="80">{{name}}</a>
+        {{/each}}
+      </div>
+   </div>
+   <div class="dropdown">
+      <button class="dropbtn">
+         Select Pokémon
+      </button>
+      <div class="dropText">
+        {{#each pokemon}}
+            <a href="#"><img src="{{image}}" width="80" height="80">{{name}}</a>
+        {{/each}}
+      </div>
+   </div>
+   <div class="dropdown">
+      <button class="dropbtn">
+         Select Pokémon
+      </button>
+      <div class="dropText">
+        {{#each pokemon}}
+            <a href="#"><img src="{{image}}" width="80" height="80">{{name}}</a>
+        {{/each}}
+      </div>
+   </div>
+    <button type="submit">Create</button> --}}
