@@ -1,8 +1,8 @@
 <h1>Create Team</h1>
 
 <form action="/users/create" method="post" class="team-form">
-<label>Pokemon 1:</label>
-    <select name="pokemon" id="pokemon">
+    <label>Pokemon 1:</label>
+    <select name="pokemon1" id="pokemon" required>
         <option value="" disabled selected>Select Pokémon</option>
         {{#each pokemon}}
         <option value={{_id}}>{{name}}</option>
@@ -10,7 +10,7 @@
     </select>
 
     <label>Pokemon 2:</label>
-    <select name="pokemon" id="pokemon">
+    <select name="pokemon2" id="pokemon" required>
         <option value="" disabled selected>Select Pokémon</option>
         {{#each pokemon}}
         <option value={{_id}}>{{name}}</option>
@@ -18,7 +18,7 @@
     </select>
 
     <label>Pokemon 3:</label>
-    <select name="pokemon" id="pokemon">
+    <select name="pokemon3" id="pokemon" required>
         <option value="" disabled selected>Select Pokémon</option>
         {{#each pokemon}}
         <option value={{_id}}>{{name}}</option>
@@ -27,7 +27,7 @@
     <button type="submit">Create</button>
 </form>
 
-     {{!-- <div class="dropdown">
+     {{!-- <div class="dropdown" name="pokemon1">
       <button class="dropbtn">
          Select Pokémon
       </button>
@@ -37,7 +37,7 @@
         {{/each}}
       </div>
    </div>
-   <div class="dropdown">
+   <div class="dropdown" name="pokemon2">
       <button class="dropbtn">
          Select Pokémon
       </button>
@@ -47,7 +47,7 @@
         {{/each}}
       </div>
    </div>
-   <div class="dropdown">
+   <div class="dropdown" name="pokemon3">
       <button class="dropbtn">
          Select Pokémon
       </button>

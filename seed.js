@@ -31,19 +31,28 @@ mongoose
         })
     })
   })
-    .then((urls) => {
+//   .then( async (urls) => {  
+//     for await (const element of urls) {
+//         return urls.map( async (element) => {
+//             let response = await axios.get(element)
+//             return response
+//          }) 
+//     }
+// })
+    .then( async (urls) => {
         return Promise.all(urls.map((element) => {
            return axios.get(element) 
         }))
     })
     .then((results) => {
+        console.log("FOUND!!!", results)
         return pokeDetails = results.map((element) => {
             return element.data
         })
     })
     .then((details) => {
         return pokeFinal = details.map((elm)=>{
-            return {name: elm.name, image: elm.sprites.front_default};
+            return {name: elm.name, image: elm.sprites.front_default, order: elm.order};
         })
     })
     .then((final)=>{
@@ -51,7 +60,8 @@ mongoose
         return Promise.all(final.map((elm)=>{
             return Pokemon.create({
                 name: elm.name,
-                image: elm.image
+                image: elm.image,
+                order: elm.order
             })
         }))
     })

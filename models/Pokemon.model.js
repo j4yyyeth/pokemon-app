@@ -4,6 +4,7 @@ const pokemonSchema = new Schema (
   {
     name: String,
     image: String,
+    order: Number
   },
 );
 

@@ -86,12 +86,11 @@ router.get('/pokemon', loggedIn, (req, res, next) => {
 
 
   Pokemon.find()
+    .sort({order: 1})
     .then(pokemonFromDB => {
-      // -> allTheBooksFromDB is a placeholder, it can be any word
       console.log('Retrieved pokemon from DB');
  
-      // we call the render method after we obtain the books data from the database -> allTheBooksFromDB
-      res.render('pokemon.hbs', { pokemon: pokemonFromDB }); // pass `allTheBooksFromDB` to the view (as a variable books to be used in the HBS)
+      res.render('pokemon.hbs', { pokemon: pokemonFromDB }); 
     })
     .catch(error => {
       console.log('Error while getting the pokemon: ', error);

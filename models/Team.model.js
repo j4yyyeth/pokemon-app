@@ -2,15 +2,11 @@ const {Schema, model} = require('mongoose');
 
 const teamSchema = new Schema (
     {
-        team: Array,
-        validate: [arrayLimit]
+        pokemon1: String,
+        pokemon2: String,
+        pokemon3: String,
+        trainer: { type: Schema.Types.ObjectId, ref: "User" },
     }
 );
-
-console.log(arrayLimit);
-
-function arrayLimit(val) {
-    return val.length <= 3;
-}
 
 module.exports = model('Team', teamSchema);
