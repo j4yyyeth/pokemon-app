@@ -3,17 +3,17 @@ var router = express.Router();
 const User = require('../models/User.model');
 const Pokemon = require('../models/Pokemon.model');
 const Team = require('../models/Team.model');
-const {loggedIn, loggedOut} = require('../middleware/guard');
+const {loggedIn, isTrainer, loggedOut} = require('../middleware/guard');
 
 router.get('/profile', loggedIn, (req, res, next) => {
-  Team.find()
+  Team.find({trainer: req.session.user._id})
   .populate('pokemon1')
   .populate('pokemon2')
   .populate('pokemon3')
   .populate('trainer')
-    .then((team) => {
-      res.render('profile.hbs', {team});
-    })
+  .then((foundTeams) => {
+      res.render('profile.hbs', {foundTeams})
+  })
     .catch((err) => {
         console.log(err)
     })
@@ -62,17 +62,28 @@ router.post('/create', loggedIn, (req, res, next) => {
 })
 })
 
-router.get('/update', (req, res, next) => {
-  Team.findById(req.params.id)
-    .then((foundTeam) => {
-        res.render('teams/update.hbs', foundTeam)
+router.get('/delete/:id', isTrainer, (req, res, next) => {
+  Team.findByIdAndDelete(req.params.id)
+    .then(() => {
+        res.redirect('/users/teams')
     })
     .catch((err) => {
         console.log(err)
     })
 })
 
-router.post('/update', (req, res, next) => {
+router.get('/update/:id', isTrainer, (req, res, next) => {
+  Pokemon.find()
+  Team.findById(req.params.id)
+    .then((found) => {
+        res.render('teams/update.hbs', found)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+router.post('/update/:id', (req, res, next) => {
   const { pokemon1, pokemon2, pokemon3, teamName } = req.body
     Team.findByIdAndUpdate(req.params.id, 
         {

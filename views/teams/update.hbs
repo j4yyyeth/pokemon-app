@@ -1,29 +1,27 @@
 <h1>Update Team</h1>
-<form action="/users/update" method="post">
+<form action="/users/update/{{_id}}" method="post">
     <label>Pokemon 1:</label>
-    <select name="pokemon1" required>
+    <select name="pokemon1">
         <option value="" disabled selected>Select Pokémon</option>
-        {{#each pokemon}}
-        <option value={{_id}}>{{name}}</option>
-        {{/each}}
+        <option value="{{pokemon}}">{{name}}</option>
     </select>
 
     <label>Pokemon 2:</label>
-    <select name="pokemon2" required>
+    <select name="pokemon2">
         <option value="" disabled selected>Select Pokémon</option>
-        {{#each pokemon}}
-        <option value={{_id}}>{{name}}</option>
+        {{#each pokemon2}}
+        <option value="{{_id}}">{{name}}</option>
         {{/each}}
     </select>
 
     <label>Pokemon 3:</label>
-    <select name="pokemon3" required>
+    <select name="pokemon3">
         <option value="" disabled selected>Select Pokémon</option>
-        {{#each pokemon}}
-        <option value={{_id}}>{{name}}</option>
+        {{#each found}}
+        <option value="{{_id}}">{{name}}</option>
         {{/each}}
     </select>
     <label for="">Team Name:</label>
     <input type="text" name="teamName"  value="{{teamName}}" required>
-    <button type="submit">Create</button>
+    <button type="submit">Update</button>
 </form>

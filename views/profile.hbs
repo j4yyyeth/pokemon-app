@@ -1,4 +1,16 @@
 <h1>My Teams:</h1>
-{{#each team}}
-    {{!--  --}}
+
+{{#each foundTeams}}
+<div class="teams-box">
+        <h1>Team Name: {{teamName}}</h1>
+        <br>
+        <h3>{{pokemon1.name}}</h3>
+        <img src="{{pokemon1.image}}" alt="name" class="pokemon-img">
+        <h3>{{pokemon2.name}}</h3>
+        <img src="{{pokemon2.image}}" alt="name" class="pokemon-img">
+        <h3>{{pokemon3.name}}</h3>
+        <img src="{{pokemon3.image}}" alt="name" class="pokemon-img">
+        <a href="/users/update/{{_id}}"><button>Update Team</button></a>
+        <a href="/users/delete/{{_id}}"><button>Delete Team</button></a>
+    </div>
 {{/each}}

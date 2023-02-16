@@ -1,3 +1,5 @@
+const Team = require('../models/Team.model');
+
 const loggedIn = (req, res, next) => {
     if (!req.session.user) {
         return res.redirect('/');
@@ -18,7 +20,7 @@ const isTrainer = (req, res, next) => {
     .populate('trainer')
     .then((foundTeam) => {
         if (!req.session.user || foundTeam.trainer._id.toString() !== req.session.user._id) {
-            res.redirect('/home', {errorMessage: "You are not authorized."})
+            res.redirect('/users/teams')
         } else {
             next()
         }
