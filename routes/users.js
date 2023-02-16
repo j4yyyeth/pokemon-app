@@ -6,18 +6,25 @@ const Team = require('../models/Team.model');
 const {loggedIn, loggedOut} = require('../middleware/guard');
 
 router.get('/profile', loggedIn, (req, res, next) => {
-  // User.findOne()
-  //   .then(profile => {
-      res.render('profile.hbs');//, { user: profile.username }
-    // })
-    // .catch(error => {
-    //   console.log('Error while getting the user: ', error);
-    //   next(error);
-    // })
+  Team.find()
+  .populate('pokemon1')
+  .populate('pokemon2')
+  .populate('pokemon3')
+  .populate('trainer')
+    .then((team) => {
+      res.render('profile.hbs', {team});
+    })
+    .catch((err) => {
+        console.log(err)
+    })
 })
 
 router.get('/teams', loggedIn, (req, res, next) => {
   Team.find()
+  .populate('pokemon1')
+  .populate('pokemon2')
+  .populate('pokemon3')
+  .populate('trainer')
     .then((team) => {
       res.render('teams/view.hbs', {team});
     })
@@ -42,16 +49,46 @@ router.post('/create', loggedIn, (req, res, next) => {
     pokemon1: req.body.pokemon1,
     pokemon2: req.body.pokemon2,
     pokemon3: req.body.pokemon3,
-    trainer: req.session.user._id
+    trainer: req.session.user._id,
+    teamName: req.body.teamName
 })
 .then((data)=>{
   console.log(data);
     res.redirect('/users/teams')
 })
 .catch((err)=>{
-    res.render('movies/new-movie.hbs');
+    res.redirect('/home');
     console.log(err);
 })
+})
+
+router.get('/update', (req, res, next) => {
+  Team.findById(req.params.id)
+    .then((foundTeam) => {
+        res.render('teams/update.hbs', foundTeam)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+router.post('/update', (req, res, next) => {
+  const { pokemon1, pokemon2, pokemon3, teamName } = req.body
+    Team.findByIdAndUpdate(req.params.id, 
+        {
+            pokemon1, 
+            pokemon2,
+            pokemon3,
+            teamName
+        },
+        {new: true})
+    .then((updatedTeam) => {
+        console.log(updatedTeam)
+        res.redirect(`/users/teams`)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
 })
 
 module.exports = router;

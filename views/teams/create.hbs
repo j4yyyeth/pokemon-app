@@ -2,7 +2,7 @@
 
 <form action="/users/create" method="post" class="team-form">
     <label>Pokemon 1:</label>
-    <select name="pokemon1" id="pokemon" required>
+    <select name="pokemon1" required>
         <option value="" disabled selected>Select Pokémon</option>
         {{#each pokemon}}
         <option value={{_id}}>{{name}}</option>
@@ -10,7 +10,7 @@
     </select>
 
     <label>Pokemon 2:</label>
-    <select name="pokemon2" id="pokemon" required>
+    <select name="pokemon2" required>
         <option value="" disabled selected>Select Pokémon</option>
         {{#each pokemon}}
         <option value={{_id}}>{{name}}</option>
@@ -18,12 +18,14 @@
     </select>
 
     <label>Pokemon 3:</label>
-    <select name="pokemon3" id="pokemon" required>
+    <select name="pokemon3" required>
         <option value="" disabled selected>Select Pokémon</option>
         {{#each pokemon}}
         <option value={{_id}}>{{name}}</option>
         {{/each}}
     </select>
+    <label for="">Team Name:</label>
+    <input type="text" name="teamName" required>
     <button type="submit">Create</button>
 </form>
 

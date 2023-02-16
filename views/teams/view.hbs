@@ -1,4 +1,15 @@
+
 {{#each team}}
-    <h3>{{pokemon}}</h3>
-    <img src="{{image}}" alt="name" class="pokemon-img">
+    <div class="teams-box">
+        <h1>Team Name: {{teamName}}</h1>
+        <br>
+        <h2>TRAINER: {{trainer.username}}</h2>
+        <br>
+        <h3>{{pokemon1.name}}</h3>
+        <img src="{{pokemon1.image}}" alt="name" class="pokemon-img">
+        <h3>{{pokemon2.name}}</h3>
+        <img src="{{pokemon2.image}}" alt="name" class="pokemon-img">
+        <h3>{{pokemon3.name}}</h3>
+        <img src="{{pokemon3.image}}" alt="name" class="pokemon-img">
+    </div>
 {{/each}}

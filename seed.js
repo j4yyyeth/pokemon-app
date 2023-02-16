@@ -22,7 +22,6 @@ mongoose
     return Pokemon.deleteMany()
   })
   .then((mongoResults)=>{
-    console.log(mongoResults)
     return axios.get('https://pokeapi.co/api/v2/pokemon?limit=386&offset=0')
     .then((results) => {
         const arr = results.data.results
@@ -31,21 +30,13 @@ mongoose
         })
     })
   })
-//   .then( async (urls) => {  
-//     for await (const element of urls) {
-//         return urls.map( async (element) => {
-//             let response = await axios.get(element)
-//             return response
-//          }) 
-//     }
-// })
+
     .then( async (urls) => {
         return Promise.all(urls.map((element) => {
            return axios.get(element) 
         }))
     })
     .then((results) => {
-        console.log("FOUND!!!", results)
         return pokeDetails = results.map((element) => {
             return element.data
         })
@@ -59,14 +50,13 @@ mongoose
 
         return Promise.all(final.map((elm)=>{
             return Pokemon.create({
-                name: elm.name,
+                name: elm.name, //.replace(elm.name.charAt(0), elm.name.charAt(0).toUpperCase())
                 image: elm.image,
                 order: elm.order
             })
         }))
     })
-    .then((DBresults)=>{
-        console.log(DBresults);
+    .then(()=>{
         mongoose.connection.close(() => {
       console.log('Mongoose connection closed');
     });

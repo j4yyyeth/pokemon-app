@@ -12,7 +12,25 @@ const loggedOut = (req, res, next) => {
     next();
 }
 
+const isTrainer = (req, res, next) => {
+
+    Team.findById(req.params.id)
+    .populate('trainer')
+    .then((foundTeam) => {
+        if (!req.session.user || foundTeam.trainer._id.toString() !== req.session.user._id) {
+            res.redirect('/home', {errorMessage: "You are not authorized."})
+        } else {
+            next()
+        }
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+
+}
+
 module.exports = {
     loggedIn,
-    loggedOut
+    loggedOut,
+    isTrainer
 }

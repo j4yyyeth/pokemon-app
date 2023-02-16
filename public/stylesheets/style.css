@@ -71,3 +71,7 @@ img {
 .dropdown:hover .dropbtn {
   background-color: rgb(255, 203, 5);
 }
+
+.teams-box {
+  border: 1px solid black;
+}
