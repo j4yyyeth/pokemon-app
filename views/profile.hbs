@@ -1,15 +1,33 @@
+<nav>
+      <a href="/home"><span>Home</span></a>
+      <a href="/users/profile">Profile</a>
+      <a href="/pokemon">Pokémon</a>
+      <a href="/users/create">Create Team</a>
+      <a href="/users/teams">View Teams</a>
+      <a href="/logout"><span class="logout-span">Logout</span></a>
+</nav>
+
 <h1>My Teams:</h1>
 
 {{#each foundTeams}}
-<div class="teams-box">
-        <h1>Team Name: {{teamName}}</h1>
-        <br>
-        <h3>{{pokemon1.name}}</h3>
-        <img src="{{pokemon1.image}}" alt="name" class="pokemon-img">
-        <h3>{{pokemon2.name}}</h3>
-        <img src="{{pokemon2.image}}" alt="name" class="pokemon-img">
-        <h3>{{pokemon3.name}}</h3>
-        <img src="{{pokemon3.image}}" alt="name" class="pokemon-img">
+    <div class="teams-box">
+        <div class="team-name">
+            <h1>Team Name: {{teamName}}</h1>
+        </div>
+        <div class="poke-box">
+            <div class="poke">
+                <h3>{{pokemon1.name}}</h3>
+                <img src="{{pokemon1.image}}" alt="name" class="pokemon-img">
+            </div>
+            <div class="poke">
+                <h3>{{pokemon2.name}}</h3>
+                <img src="{{pokemon2.image}}" alt="name" class="pokemon-img">
+            </div>
+            <div class="poke">
+                <h3>{{pokemon3.name}}</h3>
+                <img src="{{pokemon3.image}}" alt="name" class="pokemon-img">
+            </div>
+        </div>
         <a href="/users/update/{{_id}}"><button>Update Team</button></a>
         <a href="/users/delete/{{_id}}"><button>Delete Team</button></a>
     </div>

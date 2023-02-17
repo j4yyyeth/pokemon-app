@@ -1,25 +1,51 @@
 * {
   margin: 0;
+  padding: 0;
 }
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  padding: 50px;
+  background-color: red;
+  font-family: 'Merriweather', serif;
 }
 
 a {
-  color: #00B7FF;
+  color: black;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+a:hover {
+  color: #2a75bb;
+}
+
+span {
+  color: #2a75bb;
 }
 
 nav {
+  background-color: rgb(255, 255, 255);
+  padding: 25px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
+  font-size: 25px;
+  position: -webkit-sticky;
+	position: sticky;
+	top: 0;
 }
 
 img {
   height: 5vh;
+}
+
+.logout-span {
+  margin-left: auto;
+}
+
+.logout-span:hover {
+  color: #2a75bb;
 }
 
 .box {
@@ -27,51 +53,35 @@ img {
 }
 
 .pokemon-img {
-  height: 17vh;
+  height: 20vh;
 }
 
 .team-form select{
   padding: 50px;
 }
 
-.dropbtn {
-  background-color: rgb(255, 255, 255);
-  padding: 10px;
-  font-size: 20px;
-}
-.dropdown {
-  overflow-y: scroll;
-  /* position: relative; */
-  display: inline-block;
-}
-.dropText {
-  display: none;
-  position: absolute;
-  background-color: rgb(42, 117, 187);
-  min-width: 120px;
-  z-index: 200;
-}
-.dropText a {
-  color: black;
-  padding: 12px 25px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropText img {
-  width: 1vw;
-}
-
-.dropText a:hover {
-  background-color: rgb(151, 151, 151);
-}
-.dropdown:hover .dropText {
-  display: block;
-}
-.dropdown:hover .dropbtn {
-  background-color: rgb(255, 203, 5);
-}
-
 .teams-box {
   border: 1px solid black;
+}
+
+.team-and-user-name {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.poke-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 150px;
+}
+
+.poke {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

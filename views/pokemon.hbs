@@ -1,6 +1,33 @@
-{{#each pokemon}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="/stylesheets/pokedex.css">
+</head>
+<body>
+    <nav>
+      <a href="/home"><span>Home</span></a>
+      <a href="/users/profile">Profile</a>
+      <a href="/pokemon">Pokémon</a>
+      <a href="/users/create">Create Team</a>
+      <a href="/users/teams">View Teams</a>
+      <a class="logout-push" href="/logout">Logout</a>
+    </nav>
     <div class="box">
-        <h3>{{name}}</h3>
-        <img src="{{image}}" alt="name" class="pokemon-img">
+        {{#each pokemon}}
+            <div class="flex">
+                <h3>{{name}}</h3>
+                <img src="{{image}}" alt="name" class="pokemon-img">
+            </div>
+        {{/each}}
     </div>
-{{/each}}
+</body>
+</html>
+
+{{!-- <div class="parent">
+  <img class="image1" src="https://via.placeholder.com/50" />
+  <img class="image2" src="https://via.placeholder.com/100" />
+</div> --}}

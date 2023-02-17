@@ -62,28 +62,34 @@ router.post('/create', loggedIn, (req, res, next) => {
 })
 })
 
-router.get('/delete/:id', isTrainer, (req, res, next) => {
-  Team.findByIdAndDelete(req.params.id)
-    .then(() => {
-        res.redirect('/users/teams')
-    })
-    .catch((err) => {
-        console.log(err)
-    })
-})
+// router.get('/delete/:id', isTrainer, (req, res, next) => {
+//   Team.findByIdAndDelete(req.params.id)
+//     .then(() => {
+//         res.redirect('/users/profile')
+//     })
+//     .catch((err) => {
+//         console.log(err)
+//     })
+// })
 
 router.get('/update/:id', isTrainer, (req, res, next) => {
-  Pokemon.find()
   Team.findById(req.params.id)
-    .then((found) => {
-        res.render('teams/update.hbs', found)
+  .populate('pokemon1')
+  .populate('pokemon2')
+  .populate('pokemon3')
+    .then( async (found) => {
+      // console.log(found);
+      let findPokemon =  await Pokemon.find()
+      .sort({order: 1})
+        res.render('teams/update.hbs', {found, findPokemon})
     })
     .catch((err) => {
         console.log(err)
     })
 })
 
-router.post('/update/:id', (req, res, next) => {
+router.post('/update/:id', isTrainer, (req, res, next) => {
+  console.log(req.params.id);
   const { pokemon1, pokemon2, pokemon3, teamName } = req.body
     Team.findByIdAndUpdate(req.params.id, 
         {
@@ -94,12 +100,13 @@ router.post('/update/:id', (req, res, next) => {
         },
         {new: true})
     .then((updatedTeam) => {
-        console.log(updatedTeam)
-        res.redirect(`/users/teams`)
+      console.log(updatedTeam)
+        res.render(`profile.hbs`, updatedTeam)
     })
     .catch((err) => {
         console.log(err)
     })
 })
+
 
 module.exports = router;

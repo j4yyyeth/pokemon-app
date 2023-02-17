@@ -1,27 +1,38 @@
+<nav>
+      <a href="/home"><span>Home</span></a>
+      <a href="/users/profile">Profile</a>
+      <a href="/pokemon">Pokémon</a>
+      <a href="/users/create">Create Team</a>
+      <a href="/users/teams">View Teams</a>
+      <a href="/logout">Logout</a>
+</nav>
+
 <h1>Update Team</h1>
 <form action="/users/update/{{_id}}" method="post">
     <label>Pokemon 1:</label>
     <select name="pokemon1">
-        <option value="" disabled selected>Select Pokémon</option>
-        <option value="{{pokemon}}">{{name}}</option>
+        <option value="{{found.pokemon1}}" disabled selected>{{found.pokemon1.name}}</option>
+        {{#each findPokemon}}
+        <option value="{{_id}}">{{name}}</option>
+        {{/each}}
     </select>
 
     <label>Pokemon 2:</label>
     <select name="pokemon2">
-        <option value="" disabled selected>Select Pokémon</option>
-        {{#each pokemon2}}
+        <option value="{{found.pokemon2}}" disabled selected>{{found.pokemon2.name}}</option>
+        {{#each findPokemon}}
         <option value="{{_id}}">{{name}}</option>
         {{/each}}
     </select>
 
     <label>Pokemon 3:</label>
     <select name="pokemon3">
-        <option value="" disabled selected>Select Pokémon</option>
-        {{#each found}}
+        <option value="{{found.pokemon3}}" disabled selected>{{found.pokemon3.name}}</option>
+       {{#each findPokemon}}
         <option value="{{_id}}">{{name}}</option>
         {{/each}}
     </select>
     <label for="">Team Name:</label>
-    <input type="text" name="teamName"  value="{{teamName}}" required>
+    <input type="text" name="teamName"  value="{{found.teamName}}" required>
     <button type="submit">Update</button>
 </form>

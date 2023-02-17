@@ -22,7 +22,7 @@ mongoose
     return Pokemon.deleteMany()
   })
   .then((mongoResults)=>{
-    return axios.get('https://pokeapi.co/api/v2/pokemon?limit=386&offset=0')
+    return axios.get('https://pokeapi.co/api/v2/pokemon?limit=250&offset=0')
     .then((results) => {
         const arr = results.data.results
        return pokeUrls = arr.map((element) => {
@@ -50,7 +50,7 @@ mongoose
 
         return Promise.all(final.map((elm)=>{
             return Pokemon.create({
-                name: elm.name, //.replace(elm.name.charAt(0), elm.name.charAt(0).toUpperCase())
+                name: elm.name.replace(elm.name.charAt(0), elm.name.charAt(0).toUpperCase()),
                 image: elm.image,
                 order: elm.order
             })

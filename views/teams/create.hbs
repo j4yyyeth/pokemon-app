@@ -1,3 +1,12 @@
+<nav>
+      <a href="/home"><span>Home</span></a>
+      <a href="/users/profile">Profile</a>
+      <a href="/pokemon">Pokémon</a>
+      <a href="/users/create">Create Team</a>
+      <a href="/users/teams">View Teams</a>
+      <a href="/logout"><span class="logout-span">Logout</span></a>
+</nav>
+
 <h1>Create Team</h1>
 
 <form action="/users/create" method="post" class="team-form">
@@ -29,34 +38,4 @@
     <button type="submit">Create</button>
 </form>
 
-     {{!-- <div class="dropdown" name="pokemon1">
-      <button class="dropbtn">
-         Select Pokémon
-      </button>
-      <div class="dropText">
-        {{#each pokemon}}
-            <a href="#"><img src="{{image}}" width="80" height="80">{{name}}</a>
-        {{/each}}
-      </div>
-   </div>
-   <div class="dropdown" name="pokemon2">
-      <button class="dropbtn">
-         Select Pokémon
-      </button>
-      <div class="dropText">
-        {{#each pokemon}}
-            <a href="#"><img src="{{image}}" width="80" height="80">{{name}}</a>
-        {{/each}}
-      </div>
-   </div>
-   <div class="dropdown" name="pokemon3">
-      <button class="dropbtn">
-         Select Pokémon
-      </button>
-      <div class="dropText">
-        {{#each pokemon}}
-            <a href="#"><img src="{{image}}" width="80" height="80">{{name}}</a>
-        {{/each}}
-      </div>
-   </div>
-    <button type="submit">Create</button> --}}
+{{!-- <div class="ball"></div> --}}
