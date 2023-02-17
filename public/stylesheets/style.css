@@ -57,10 +57,12 @@ img {
 }
 
 .team-form select{
-  padding: 50px;
+  padding: 10px;
 }
 
 .teams-box {
+  margin: 10px;
+  background-color: white;
   border: 1px solid black;
 }
 
